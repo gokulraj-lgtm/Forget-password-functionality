@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forgot Password – Reset Your Account Access</title>
+    <meta name="description"
+        content="Securely reset your password in just a few easy steps. Enter your email, verify your identity, and set a new password." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- Background orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+    <div class="bg-orb orb-3"></div>
+
+    <div class="page-wrapper">
+
+        <!-- ===== STEP 1: EMAIL ===== -->
+        <div class="card" id="step-email">
+            <div class="card-header">
+                <div class="icon-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="16" x="2" y="4" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                </div>
+                <h1 class="card-title">Forgot Password?</h1>
+                <p class="card-subtitle">No worries! Enter your email address and we'll send you a 6-digit verification
+                    code.</p>
+            </div>
+
+            <form id="form-email" class="card-body" novalidate>
+                <div class="form-group">
+                    <label for="email-input" class="form-label">Email Address</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="20" height="16" x="2" y="4" rx="2" />
+                                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                            </svg>
+                        </span>
+                        <input type="email" id="email-input" class="form-input" placeholder="you@example.com"
+                            autocomplete="email" required />
+                    </div>
+                    <span class="field-error" id="email-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="btn-send-code">
+                    <span class="btn-text">Send Verification Code</span>
+                    <span class="btn-loader hidden"></span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </button>
+            </form>
+
+            <div class="card-footer">
+                <a href="#" class="back-link" id="back-to-login-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                    Back to Login
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== STEP 2: OTP VERIFICATION ===== -->
+        <div class="card hidden" id="step-otp">
+            <div class="card-header">
+                <div class="icon-badge success">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    </svg>
+                </div>
+                <h1 class="card-title">Check Your Email</h1>
+                <p class="card-subtitle">We've sent a 6-digit code to <strong
+                        id="display-email">your@email.com</strong>. Enter it below to continue.</p>
+            </div>
+
+            <form id="form-otp" class="card-body" novalidate>
+                <div class="form-group">
+                    <label class="form-label">Verification Code</label>
+                    <div class="otp-grid" id="otp-grid">
+                        <input type="text" maxlength="1" class="otp-input" id="otp-0" inputmode="numeric"
+                            pattern="[0-9]" autocomplete="one-time-code" />
+                        <input type="text" maxlength="1" class="otp-input" id="otp-1" inputmode="numeric"
+                            pattern="[0-9]" />
+                        <input type="text" maxlength="1" class="otp-input" id="otp-2" inputmode="numeric"
+                            pattern="[0-9]" />
+                        <span class="otp-separator">—</span>
+                        <input type="text" maxlength="1" class="otp-input" id="otp-3" inputmode="numeric"
+                            pattern="[0-9]" />
+                        <input type="text" maxlength="1" class="otp-input" id="otp-4" inputmode="numeric"
+                            pattern="[0-9]" />
+                        <input type="text" maxlength="1" class="otp-input" id="otp-5" inputmode="numeric"
+                            pattern="[0-9]" />
+                    </div>
+                    <span class="field-error" id="otp-error"></span>
+                </div>
+
+                <div class="resend-section">
+                    <p class="resend-text">Didn't receive the code?</p>
+                    <button type="button" class="resend-btn" id="resend-btn">
+                        <span id="resend-label">Resend Code</span>
+                        <span id="resend-timer" class="hidden">Resend in <span id="countdown">60</span>s</span>
+                    </button>
+                </div>
+
+                <!-- Demo hint -->
+                <div class="demo-hint">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16v-4" />
+                        <path d="M12 8h.01" />
+                    </svg>
+                    Demo mode: use code <strong>123456</strong>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="btn-verify">
+                    <span class="btn-text">Verify & Continue</span>
+                    <span class="btn-loader hidden"></span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </button>
+            </form>
+
+            <div class="card-footer">
+                <a href="#" class="back-link" id="back-to-email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m15 18-6-6 6-6" />
+                    </svg>
+                    Change Email
+                </a>
+            </div>
+        </div>
+
+        <!-- ===== STEP 3: NEW PASSWORD ===== -->
+        <div class="card hidden" id="step-password">
+            <div class="card-header">
+                <div class="icon-badge warning">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                </div>
+                <h1 class="card-title">Create New Password</h1>
+                <p class="card-subtitle">Your new password must be different from your previously used passwords.</p>
+            </div>
+
+            <form id="form-password" class="card-body" novalidate>
+                <div class="form-group">
+                    <label for="new-password" class="form-label">New Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                            </svg>
+                        </span>
+                        <input type="password" id="new-password" class="form-input" placeholder="Min. 8 characters"
+                            autocomplete="new-password" required />
+                        <button type="button" class="toggle-password" data-target="new-password"
+                            aria-label="Toggle password visibility">
+                            <svg class="eye-show" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            <svg class="eye-hide hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                                <path
+                                    d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                                <line x1="2" x2="22" y1="2" y2="22" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Password strength meter -->
+                    <div class="strength-meter" id="strength-meter">
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strength-fill"></div>
+                        </div>
+                        <span class="strength-label" id="strength-label">Enter a password</span>
+                    </div>
+
+                    <!-- Password requirements -->
+                    <ul class="requirements-list" id="requirements-list">
+                        <li class="req" id="req-length">
+                            <span class="req-icon">○</span> At least 8 characters
+                        </li>
+                        <li class="req" id="req-upper">
+                            <span class="req-icon">○</span> One uppercase letter
+                        </li>
+                        <li class="req" id="req-number">
+                            <span class="req-icon">○</span> One number
+                        </li>
+                        <li class="req" id="req-special">
+                            <span class="req-icon">○</span> One special character
+                        </li>
+                    </ul>
+
+                    <span class="field-error" id="password-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password" class="form-label">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                            </svg>
+                        </span>
+                        <input type="password" id="confirm-password" class="form-input"
+                            placeholder="Repeat your password" autocomplete="new-password" required />
+                        <button type="button" class="toggle-password" data-target="confirm-password"
+                            aria-label="Toggle confirm password visibility">
+                            <svg class="eye-show" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                                <circle cx="12" cy="12" r="3" />
+                            </svg>
+                            <svg class="eye-hide hidden" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24" />
+                                <path
+                                    d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68" />
+                                <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
+                                <line x1="2" x2="22" y1="2" y2="22" />
+                            </svg>
+                        </button>
+                    </div>
+                    <span class="field-error" id="confirm-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="btn-reset">
+                    <span class="btn-text">Reset Password</span>
+                    <span class="btn-loader hidden"></span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+
+        <!-- ===== STEP 4: SUCCESS ===== -->
+        <div class="card hidden" id="step-success">
+            <div class="success-content">
+                <div class="success-animation">
+                    <div class="checkmark-circle">
+                        <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle-bg" cx="26" cy="26" r="25" fill="none" />
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="card-title">Password Reset!</h1>
+                <p class="card-subtitle">Your password has been successfully updated. You can now log in with your new
+                    password.</p>
+
+                <div class="security-tips">
+                    <h3 class="tips-title">Security Tips</h3>
+                    <ul class="tips-list">
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                            </svg>
+                            Never share your password with anyone
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                            </svg>
+                            Use a unique password for each account
+                        </li>
+                        <li>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+                            </svg>
+                            Consider enabling two-factor authentication
+                        </li>
+                    </ul>
+                </div>
+
+                <button class="btn btn-primary" id="btn-go-login">
+                    <span class="btn-text">Go to Login</span>
+                    <svg class="btn-arrow" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M5 12h14" />
+                        <path d="m12 5 7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="progress-indicator" id="progress-indicator">
+            <div class="progress-step active" id="prog-1">
+                <div class="prog-dot"></div>
+                <span>Email</span>
+            </div>
+            <div class="progress-line" id="prog-line-1"></div>
+            <div class="progress-step" id="prog-2">
+                <div class="prog-dot"></div>
+                <span>Verify</span>
+            </div>
+            <div class="progress-line" id="prog-line-2"></div>
+            <div class="progress-step" id="prog-3">
+                <div class="prog-dot"></div>
+                <span>Reset</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
